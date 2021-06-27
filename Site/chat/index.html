@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <link rel="stylesheet" href="pagInicialcss.css">
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="pagIncialjs.js">
+      var x = document.getElementById("menuContexto")
+    </script>
+    <script type="text/javascript" src="client.js">
+    </script>
+  </head>
+  <body onclick="fecharComunidade()" onload="startPage()">
+    <div id="pageBlocker">
+      <div id="authenticationScreen">
+        <div>
+          <input type="text" id="idText" name="idText" placeholder="Nome">
+          <input type="password" id="passText" name="passText" placeholder="Senha">
+          <br>
+          <div style="flex-direction: row">
+            <input type="button" onclick="submitId()" value="Login">
+            <input type="button" onclick="submitRegister()" value="Cadastrar">
+          </div>
+        </div>
+      </div>
+      <div id="editMessage" style="display: none">
+        <div>
+          <textarea id="editText" name="editText" placeholder="Texto" rows="8" cols="50"></textarea>
+          <br>
+          <div style="flex-direction: row">
+            <input type="button" onclick="submitEdit()" value="Editar">
+            <input type="button" onclick="cancelEdit()" value="Cancelar">
+          </div>
+        </div>
+      </div>
+      <div id="editGroup" style="display: none">
+        <input type="hidden" id="editGroupId">
+
+        <input type="text" name="groupname" id="groupname" value="">
+        <button onclick="confirmEditGroup()" type="button" name="button">Alterar nome</button>
+        <button onclick="cancelEditGroup()" type="button" name="button">Cancelar</button>
+      </div>
+      <div id="groupSelectMenu" style="display: none">
+        <input type="hidden" id="addGroupUser">
+        <select id="groupSelection">
+
+        </select>
+        <button onclick="addUserToGroup()" type="button" name="button">Adicionar</button>
+        <button onclick="cancelAddGroup()" type="button" name="button">Cancelar</button>
+      </div>
+    </div>
+    <div id="pageContainer">
+      <div class="leftbar">
+        <div class="divPerfil">
+          <img src="iconPerfil.png" alt="foto do perfil" id="iconPerfil">
+          <h1 id="seuPerfil">Seu Perfil</h1>
+          <div class="icons" id="icons">
+            <img src="addIcon.png" alt="icone adicionar" id="addIcon" onclick="abreAddAmigo()">
+            <img src="configIcon.png" alt="icone configurações" id="configIcon">
+          </div>
+        </div>
+        <div class="divBusca" id="divBusca">
+          <div id="barraBusca">
+            <input type="text" placeholder="Pesquise ou comece uma nova conversa..."/>
+            <img src="iconSearch.png" alt="icone de pesquisa">
+          </div>
+        </div>
+        <div class="userBar">
+          <ul id="lista">
+          </ul>
+        </div>
+      </div>
+
+      <div id="chatBack">
+        <div id="noChat">
+          <p>Você não está com nenhuma conversa aberta.</p>
+        </div>
+      </div>
+      <div id="chatField">
+        <div class="chatfoda" ondrop="onDropFile(event)" ondragover="onDragOver(event)">
+        </div>
+        <div class="textField">
+          <img src="emoteIcon.png" alt="icone de emote">
+          <img src="imgIcon.png" alt="icone de imagem">
+          <img src="alertIcon.png" alt="icone de alerta">
+
+          <div class="textBar">
+            <input id="messageSendInput" type="text" placeholder=" Digite uma mensagem"/>
+            <img class="sendIcon" src="sendIcon.png" alt="icone de enviar">
+          </div>
+
+          <img src="textEditIcon.png" alt="icone de edição de texto">
+          <img src="audioIcon.png" alt="icone de audio">
+        </div>
+      </div>
+
+      <div class="contextMenu" id="menuContexto">
+        <ul>
+          <li onclick="blockSelectedUser(true)" id="blockUser">Bloquear usuário</li>
+          <li onclick="blockSelectedUser(false)" id="unblockUser">Desbloquear usuário</li>
+          <li>Marcar como lido</li>
+          <li>Silenciar notificação</li>
+          <li onclick="openGroupSelectMenu()">Adicionar em grupo</li>
+        </ul>
+      </div>
+      <div class="contextMenuComunidade" id="menuContextoComunidade">
+        <ul>
+          <li onclick="openEditGroupMenu()" id="editgroupbutton">Editar grupo</li>
+          <li>Sair da comunidade</li>
+          <li>Marcar como lido</li>
+          <li>Silenciar notificação</li>
+        </ul>
+      </div>
+      <div class="contextMenuMensagem" id="menuContextoMensagem">
+        <ul>
+          <li onclick="messageSetHidden(false)" id="revealMsg">Revelar mensagem</li>
+          <li onclick="messageSetHidden(true)" id="hideMsg">Ocultar mensagem</li>
+          <li onclick="showEditMessage()">Editar mensagem</li>
+        </ul>
+      </div>
+      <div class="teste" id="teste">
+        <div class="addFriendContainer">
+          <div class="header">
+            <img src="backIcon.png" alt="" onclick="escondeMenu()">
+            <p>Novos Amigos</p>
+          </div>
+          <div class="input">
+            <input type="text" id='userSearchBar' placeholder="Encontre um amigo novo ou comunidade">
+            <img src="iconSearch.png" alt="" onclick="searchUser()">
+          </div>
+          <div class="friendBar">
+            <ul>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="createCommunityContainer">
+          <input type="text" name="createCommunityName" id="createCommunityName" placeholder="Nome da comunidade">
+          <button type="button" name="createCommunity" onclick="createCommunity()">Criar grupo</button>
+        </div>
+      </div>
+      <div class="opacity" id="opacity">
+      </div>
+
+      <div class="comunityTab" id="comunityTab">
+        <p id="titulo">Comunidade X</p>
+        <div class="content">
+        -> Chat de texto 1<br>
+        -> Chat de texto 2<br>
+        -> Chat de texto 3<br>
+        -> Chat de texto 4<br>
+        -> Chat de texto 5<br>
+        -> Chat de texto 6
+      </div>
+    </div>
+
+    <div id="storage">
+      <div id="userStorage">
+        <li oncontextmenu="abreMenu(this.querySelector('.nome').innerHTML)" onclick="abrirConversa(this)">
+          <img src="iconPerfil.png" alt="foto do perfil">
+          <div class="texto">
+            <p class="nome">Usuário XXX</p>
+            <p class="mensagem">Ultima mensagem recebida</p>
+          </div>
+        </li>
+      </div>
+      <div id="communityStorage">
+        <li oncontextmenu="abreMenuComunidade(this.getAttribute('data-group'))" onclick="abrirConversaGrupo(this)" class="community">
+          <img src="iconPerfil.png" alt="foto do perfil">
+          <div class="texto">
+            <p class="nome">Comunidade XXX</p>
+            <p class="mensagem">Descrição da comunidade</p>
+          </div>
+        </li>
+      </div>
+      <div id="msgOtherStorage">
+        <div class="msg other">
+          <span class='messageName'></span>
+          <br>
+          <span class='messageContent'></span>
+        </div>
+      </div>
+      <div id="msgMineStorage">
+        <div class="msg mine">
+          <i class="arrow down" onclick="abreMenuMensagem2(this.parentNode.getAttribute('data-msgid'), this)"></i>
+          <span class='messageContent'></span>
+        </div>
+      </div>
+      <div id="userSearchResultStorage">
+        <li onclick="addUserClick(this)">
+          <p class='messageContent'>Resultado da pesquisa</p>
+          <img src="addIconWhite.png" alt="">
+        </li>
+      </div>
+    </div>
+  </body>
+</html>
