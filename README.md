@@ -1,5 +1,7 @@
 # chat
 
+### Esta aplicação se trata de um projeto educacional e por isso pode apresentar debugs e falhas de segurança como SQL Injection.
+
 Esta aplicação de chat obedece as seguintes histórias de usuário:
 
 - Trocar mensagens com outros usuários
